@@ -149,7 +149,7 @@ class CoreInstaller implements InstallerInterface
         $this->installCode($package);
         $this->binaryInstaller->installBinaries($package, $this->getInstallPath($package));
 
-        $this->filesystem->establishSymlinks($this->symlinks, false);
+        $this->filesystem->establishSymlinks($this->symlinks, true);
 
         if (!$repo->hasPackage($package)) {
             $repo->addPackage(clone $package);
@@ -173,7 +173,7 @@ class CoreInstaller implements InstallerInterface
         $this->updateCode($initial, $target);
         $this->binaryInstaller->installBinaries($target, $this->getInstallPath($target));
 
-        $this->filesystem->establishSymlinks($this->symlinks, false);
+        $this->filesystem->establishSymlinks($this->symlinks, true);
 
         $repo->removePackage($initial);
         if (!$repo->hasPackage($target)) {
